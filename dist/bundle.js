@@ -20,13 +20,33 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/domController.js":
+/*!******************************!*\
+  !*** ./src/domController.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst DomController = (() => {\n  const bodyContainer = document.querySelector('.body-container');\n  const createBtn = document.querySelector('.add-todo');\n  const prompt = document.querySelector('.prompt__div');\n  const exit = document.querySelector('.exit');\n\n  createBtn.addEventListener('click', () => {\n    bodyContainer.classList.add('blur');\n    prompt.classList.remove('collapse');\n  });\n\n  exit.addEventListener('click', () => {\n    bodyContainer.classList.remove('blur');\n    prompt.classList.add('collapse');\n  });\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DomController);\n\n\n//# sourceURL=webpack://todo/./src/domController.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.css */ \"./src/styles/styles.css\");\n\n\n\n//# sourceURL=webpack://todo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/styles.css */ \"./src/styles/styles.css\");\n/* harmony import */ var _assets_logo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/logo.png */ \"./src/assets/logo.png\");\n/* harmony import */ var _domController__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./domController */ \"./src/domController.js\");\n\n\n\n\nfunction blur() {\n  window.onload = () => {};\n}\n\n\n//# sourceURL=webpack://todo/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/assets/logo.png":
+/*!*****************************!*\
+  !*** ./src/assets/logo.png ***!
+  \*****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"assets/logo.png\";\n\n//# sourceURL=webpack://todo/./src/assets/logo.png?");
 
 /***/ })
 

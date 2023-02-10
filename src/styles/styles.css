@@ -8,25 +8,49 @@
 
 :root {
   --black-background: #000000bd;
-  --primary-white: #eee;
-  --aside-gray: #d4d4d4;
+  --primary-white: hsl(0, 0%, 96%);
+  --nav-gray: hsl(0, 0%, 89%);
+  --nav-text-color: #363636;
+  --green: hsl(160, 48%, 40%);
+  --red: hsl(7, 48%, 40%);
 }
+
 body {
+  position: relative;
+}
+
+.exit {
+  cursor: pointer;
+}
+
+.body-container.blur {
+  filter: blur(5px);
+}
+
+.body-container {
+  transition: 0.25s all ease;
   height: 100vh;
+  font-size: 1.25rem;
   display: grid;
   grid-template-areas:
     'header header header header header'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
-    'aside main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
+    'nav main main main main'
     'footer footer footer footer footer';
+}
+
+.body-container > * {
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
 }
 
 header {
@@ -36,20 +60,68 @@ header {
   align-items: center;
 }
 
-h1 {
+header img {
   color: white;
   padding: 0 3rem;
+  margin: -0.5rem 0;
 }
 
-aside {
-  grid-area: aside;
-  background-color: var(--aside-gray);
+nav {
+  grid-area: nav;
+  background-color: var(--nav-gray);
   min-width: 125px;
+  padding: 4vw;
+  color: var(--nav-text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+nav > ul {
+  position: relative;
+  max-width: 50px;
+}
+
+nav > ul > li {
+  padding: 0.75rem 0;
+  list-style: none;
+  transition: 0.1s all ease;
+}
+
+nav > ul > li:hover {
+  color: var(--red);
+  font-size: 1.375rem;
+}
+
+nav > ul > li:hover::before,
+nav > ul > li:active::before {
+  content: '//';
+  position: absolute;
+  left: -1rem;
+}
+
+.add-todo {
+  display: inline-block;
+  text-align: center;
+  width: 4.3rem;
+  padding: 0;
+  color: white;
+  font-size: 3.75rem;
+  background-color: var(--black-background);
+  border-radius: 50%;
+  box-shadow: 0.2rem 0.5rem 1rem rgb(0 0 0 / 40%);
+  cursor: pointer;
+  transition: 0.1s all ease-out;
+}
+
+.add-todo:hover {
+  transform: translateY(-2px);
 }
 
 main {
   grid-area: main;
   background-color: var(--primary-white);
+  padding: 0 8vw;
 }
 
 .footer {
@@ -78,4 +150,59 @@ main {
 
 .fa-github:hover {
   transform: rotate(360deg) scale(1.2);
+}
+
+.prompt__div {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  width: max(80%, 500px);
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 65vh;
+  transition: 0.5s all ease;
+}
+
+.prompt__div.collapse {
+  z-index: -1;
+  scale: 0;
+}
+
+.prompt__div > * {
+  outline: 1px solid rgb(175, 175, 175);
+}
+
+.heading__div {
+  grid-column: 1 / -1;
+  grid-row: 1 / 2;
+  background: var(--black-background);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.side__div {
+  grid-column: 1 / 2;
+  grid-row: 2 / -1;
+  background-color: var(--nav-gray);
+  padding: 1rem;
+}
+
+.body__div {
+  grid-column: 2 / -1;
+  grid-row: 2 / -1;
+  background-color: var(--primary-white);
+}
+
+.side__div ul li {
+  list-style: none;
+  padding: 0.5rem 0;
 }

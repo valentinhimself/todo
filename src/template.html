@@ -12,16 +12,42 @@
     ></script>
   </head>
   <body>
-    <header>
-      <h1>Todo List</h1>
-    </header>
-    <aside></aside>
-    <main></main>
-    <footer class="footer">
-      <p>Created by valentinhimself</p>
-      <a href="https://github.com/valentinhimself/" target="_blank">
-        <i class="fab fa-github"></i
-      ></a>
-    </footer>
+    <div class="body-container">
+      <header>
+        <img src="./assets/logo.png" alt="logo" />
+      </header>
+      <nav>
+        <ul>
+          <li><span>Home</span></li>
+          <li><span>Today</span></li>
+          <li><span>Week</span></li>
+          <li><span>Projects</span></li>
+          <li><span>Notes</span></li>
+        </ul>
+        <div class="add-todo">+</div>
+      </nav>
+      <main></main>
+      <footer class="footer">
+        <p>Created by valentinhimself</p>
+        <a href="https://github.com/valentinhimself/" target="_blank">
+          <i class="fab fa-github"></i
+        ></a>
+      </footer>
+    </div>
+
+    <div class="prompt__div collapse">
+      <div class="heading__div">
+        <span>Create a new... </span>
+        <span class="exit">×</span>
+      </div>
+      <div class="side__div">
+        <ul>
+          <li><span>To Do</span></li>
+          <li><span>Project</span></li>
+          <li><span>Note</span></li>
+        </ul>
+      </div>
+      <div class="body__div"></div>
+    </div>
   </body>
 </html>
