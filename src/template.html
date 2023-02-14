@@ -47,7 +47,38 @@
           <li><span>Note</span></li>
         </ul>
       </div>
-      <div class="body__div"></div>
+      <div class="body__div">
+        <textarea
+          name="new-todo"
+          id="title"
+          cols="90"
+          rows="1"
+          placeholder="Title: e.g. pay bills"
+        ></textarea>
+        <textarea
+          name="new-todo"
+          id="details"
+          cols="90"
+          rows="6"
+          placeholder="Details: e.g. pay the phone bill"
+        ></textarea>
+        <div class="due-date__div">
+          <span>Due date:</span>
+          <input type="date" id="date" name="new-todo" />
+        </div>
+        <div class="priority">
+          <span>Priority:</span>
+          <div class="priority-btns">
+            <label for="low" id="low_lbl">Low</label>
+            <input type="radio" id="low" name="new-todo" />
+            <label for="med" id="med_lbl">Medium</label>
+            <input type="radio" id="med" name="new-todo" />
+            <label for="high" id="high_lbl">High</label>
+            <input type="radio" id="high" name="new-todo" />
+          </div>
+          <button type="button" id="submit__btn">Add to do</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
