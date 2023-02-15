@@ -304,21 +304,21 @@ input {
 }
 
 #low_lbl:hover,
-#med_lbl:hover,
-#high_lbl:hover {
+#low_lbl.priority-active {
+  background: hsl(120, 79%, 25%);
   color: white;
 }
 
-#low_lbl:hover {
-  background: hsl(120, 79%, 25%);
-}
-
-#med_lbl:hover {
+#med_lbl:hover,
+#med_lbl.priority-active {
   background: hsl(60, 100%, 40%);
+  color: white;
 }
 
-#high_lbl:hover {
+#high_lbl:hover,
+#high_lbl.priority-active {
   background: hsl(0, 100%, 40%);
+  color: white;
 }
 
 #submit__btn {
