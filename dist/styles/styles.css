@@ -321,7 +321,8 @@ input {
   color: white;
 }
 
-#submit__btn {
+#submit__btn,
+.details__btn {
   padding: 0.5rem 1rem;
   border-radius: 3px;
   border: 1px solid #3ba395;
@@ -336,7 +337,12 @@ input {
   margin-left: auto;
 }
 
-#submit__btn:hover {
+#submit__btn:hover,
+.details__btn:hover {
   background-color: #3ba395;
   color: white;
+}
+
+.details__btn.hidden {
+  display: none;
 }
