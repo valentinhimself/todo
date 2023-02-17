@@ -27,12 +27,7 @@ const DomController = (() => {
   });
 
   submitBtn.addEventListener('click', () => {
-    if (
-      getFormTitle().value &&
-      getFormDetails().value &&
-      getFormPriority &&
-      getFormDueDate.value
-    ) {
+    if (isFilledOut()) {
       exit.click();
       priorityLabels.forEach((label) =>
         label.classList.remove('priority-active')
@@ -55,8 +50,20 @@ const DomController = (() => {
     return document.querySelector('#date');
   }
 
+  function isFilledOut() {
+    if (
+      getFormTitle().value &&
+      getFormDetails().value &&
+      getFormPriority().id &&
+      getFormDueDate().value
+    )
+      return true;
+    return false;
+  }
+
   return {
     submitBtn,
+    isFilledOut,
     getFormTitle,
     getFormDetails,
     getFormPriority,

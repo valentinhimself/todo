@@ -5,14 +5,17 @@ import ToDo from './todoItems';
 
 const array = [];
 DomController.submitBtn.addEventListener('click', () => {
-  array.push(
-    new ToDo(
-      DomController.getFormTitle().value,
-      DomController.getFormDetails().value,
-      DomController.getFormDueDate().value,
-      DomController.getFormPriority().id
-    )
-  );
+  if (DomController.isFilledOut()) {
+    array.push(
+      new ToDo(
+        DomController.getFormTitle().value,
+        DomController.getFormDetails().value,
+        DomController.getFormDueDate().value,
+        DomController.getFormPriority().id
+      )
+    );
+  }
+
   console.log(array);
   // then populate a list of ToDos in the body based on the array
 });
