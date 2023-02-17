@@ -346,3 +346,50 @@ input {
 .details__btn.hidden {
   display: none;
 }
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  background: hsl(0, 0%, 93%);
+  padding: 0.5rem;
+}
+
+.check-box {
+  display: block;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 2px solid #3ba395;
+  border-radius: 3px;
+}
+
+.check-box.checked {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: block;
+  background: url(../assets/check.png), #3ba395;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.todo-item .right,
+.todo-item .left {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.todo-item .left {
+  gap: 1.5rem;
+}
+
+.delete-icon > svg,
+.edit-icon > svg {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.delete-icon > svg:hover,
+.edit-icon > svg:hover {
+  fill: #3ba395;
+}

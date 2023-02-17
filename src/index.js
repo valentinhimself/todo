@@ -1,5 +1,6 @@
 import './styles/styles.css';
 import './assets/logo.png';
+import './assets/check.png';
 import DomController from './domController';
 import ToDo from './todoItems';
 
@@ -14,6 +15,10 @@ DomController.submitBtn.addEventListener('click', () => {
         DomController.getFormPriority().id
       )
     );
+    ToDo.createToDoItem(array[array.length - 1].title);
+    //   DomController.getFormDetails().value,
+    //   DomController.getFormDueDate().value,
+    //   DomController.getFormPriority().id
   }
 
   console.log(array);

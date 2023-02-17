@@ -5,7 +5,6 @@ const DomController = (() => {
   const exit = document.querySelector('.exit');
   const priorityLabels = document.querySelectorAll('label');
   const submitBtn = document.querySelector('#submit__btn');
-  const priorityBtns = document.querySelectorAll('#low, #med, #high');
 
   createBtn.addEventListener('click', () => {
     bodyContainer.classList.add('blur');
