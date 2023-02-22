@@ -60,6 +60,12 @@ const DomController = (() => {
     return false;
   }
 
+  function resetInputs() {
+    getFormTitle().value = '';
+    getFormDetails().value = '';
+    getFormDueDate().value = '';
+  }
+
   return {
     submitBtn,
     isFilledOut,
@@ -67,6 +73,7 @@ const DomController = (() => {
     getFormDetails,
     getFormPriority,
     getFormDueDate,
+    resetInputs,
   };
 })();
 

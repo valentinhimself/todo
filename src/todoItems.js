@@ -6,12 +6,14 @@ export default class ToDo {
     this.priority = priority;
   }
 
-  static createToDoItem(title) {
+  static createToDoItem(title, priority) {
     this.title = title;
+    this.priority = priority;
 
     const main = document.querySelector('main');
     const todoItem = document.createElement('div');
     todoItem.classList.add('todo-item');
+    todoItem.classList.add(`${this.priority}`);
 
     const left = document.createElement('div');
     left.classList.add('left');
@@ -63,5 +65,13 @@ export default class ToDo {
     todoItem.appendChild(right);
 
     main.appendChild(todoItem);
+
+    checkBox.addEventListener('click', () => {
+      checkBox.classList.toggle('checked');
+      itemTitle.classList.toggle('checked');
+      dueDate.classList.toggle('checked');
+      editIcon.classList.toggle('checked');
+      deleteIcon.classList.toggle('checked');
+    });
   }
 }

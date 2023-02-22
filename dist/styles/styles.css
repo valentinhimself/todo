@@ -372,6 +372,23 @@ input {
   background-size: contain;
 }
 
+.item-text-title.checked {
+  text-decoration: line-through;
+  color: hsl(0, 0%, 45%);
+}
+
+.item-due-date.checked {
+  color: hsl(0, 0%, 45%);
+}
+
+.edit-icon.checked > svg {
+  fill: hsl(0, 0%, 45%);
+}
+
+.delete-icon.checked > svg {
+  fill: hsl(0, 0%, 45%);
+}
+
 .todo-item .right,
 .todo-item .left {
   display: flex;
@@ -381,6 +398,19 @@ input {
 
 .todo-item .left {
   gap: 1.5rem;
+  margin-left: 0.25rem;
+}
+
+.todo-item.high {
+  border-left: 4px solid hsl(0, 100%, 40%);
+}
+
+.todo-item.med {
+  border-left: 4px solid hsl(60, 100%, 40%);
+}
+
+.todo-item.low {
+  border-left: 4px solid hsl(120, 79%, 25%);
 }
 
 .delete-icon > svg,

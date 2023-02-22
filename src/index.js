@@ -15,10 +15,11 @@ DomController.submitBtn.addEventListener('click', () => {
         DomController.getFormPriority().id
       )
     );
-    ToDo.createToDoItem(array[array.length - 1].title);
-    //   DomController.getFormDetails().value,
-    //   DomController.getFormDueDate().value,
-    //   DomController.getFormPriority().id
+    ToDo.createToDoItem(
+      array[array.length - 1].title,
+      array[array.length - 1].priority
+    );
+    DomController.resetInputs();
   }
 
   console.log(array);
