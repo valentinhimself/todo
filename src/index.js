@@ -2,26 +2,118 @@ import './styles/styles.css';
 import './assets/logo.png';
 import './assets/check.png';
 import DomController from './domController';
-import ToDo from './todoItems';
+import ToDoItem from './todoItems';
 
+// function ToDo() {
 const array = [];
+window.array = array;
 DomController.submitBtn.addEventListener('click', () => {
-  if (DomController.isFilledOut()) {
-    array.push(
-      new ToDo(
-        DomController.getFormTitle().value,
-        DomController.getFormDetails().value,
-        DomController.getFormDueDate().value,
-        DomController.getFormPriority().id
-      )
-    );
-    ToDo.createToDoItem(
+  function pushToDoToArray() {
+    if (DomController.isFilledOut()) {
+      array.push(
+        new ToDoItem(
+          DomController.getFormTitle().value,
+          DomController.getFormDetails().value,
+          DomController.getFormDueDate().value,
+          DomController.getFormPriority().id
+        )
+      );
+    }
+  }
+  pushToDoToArray();
+
+  function addToDoToDOM() {
+    ToDoItem.createToDoItem(
       array[array.length - 1].title,
       array[array.length - 1].priority
     );
     DomController.resetInputs();
   }
+  addToDoToDOM();
+  EditPrompts();
 
   console.log(array);
-  // then populate a list of ToDos in the body based on the array
 });
+
+function EditPrompts() {
+  const editPrompt = document.querySelector('.edit-prompt__div ');
+  const editIcons = document.querySelectorAll('.edit-icon');
+  const titleEdit = document.querySelector('#title-edit');
+  const detailsEdit = document.querySelector('#details-edit');
+  const dateEdit = document.querySelector('#date-edit');
+  const exit = document.querySelector('.exit-edit');
+  const editSubmitBtn = document.querySelector('#edit__btn');
+  let currentToDoTitle;
+  let arrayIndex;
+
+  exit.addEventListener('click', closeEditPrompt);
+
+  editIcons.forEach((icon) =>
+    icon.addEventListener('click', () => {
+      setEditValues(getCurrentToDoTitleNode(icon));
+      openEditPrompt();
+    })
+  );
+
+  editSubmitBtn.addEventListener('click', () => {
+    updateToDoArray(array, currentToDoTitle);
+
+    updateToDoDOM();
+    closeEditPrompt();
+    console.log(array);
+  });
+
+  function closeEditPrompt() {
+    editPrompt.classList.add('collapse');
+    DomController.bodyContainer.classList.remove('blur');
+  }
+
+  function openEditPrompt() {
+    editPrompt.classList.remove('collapse');
+    DomController.bodyContainer.classList.add('blur');
+  }
+
+  function getCurrentToDoTitleNode(icon) {
+    currentToDoTitle =
+      icon.parentElement.parentElement.querySelector(
+        '.item-text-title'
+      ).textContent;
+    return currentToDoTitle;
+  }
+
+  function setEditValues(title) {
+    titleEdit.textContent = title;
+    // detailsEdit.textContent = array[arrayIndex].details;
+  }
+
+  //   function getArrayIndex(arr, title) {
+  //     arrayIndex = arr.findIndex((object) => object.title === title);
+  //   }
+
+  function updateToDoArray(arr, title) {
+    arrayIndex = arr.findIndex((object) => object.title === title);
+
+    array[arrayIndex].title = titleEdit.value;
+    array[arrayIndex].details = detailsEdit.value;
+    array[arrayIndex].dueDate = dateEdit.value;
+    array[arrayIndex].priority = (() => {
+      const checkedValue = document
+        .querySelector('.edit-prompt__div .priority-btns input:checked')
+        .id.slice(0, 3);
+      if (checkedValue === 'low' || checkedValue === 'med') return checkedValue;
+      return 'high';
+    })();
+  }
+
+  function updateToDoDOM() {
+    // icon.parentElement.parentElement.querySelector(
+    //   '.item-text-title'
+    // ).textContent = titleEdit.value;
+  }
+}
+
+//   return { array };
+// }
+
+// const myToDo = () => ToDo();
+// myToDo();

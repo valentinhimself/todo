@@ -68,6 +68,7 @@ const DomController = (() => {
 
   return {
     submitBtn,
+    bodyContainer,
     isFilledOut,
     getFormTitle,
     getFormDetails,

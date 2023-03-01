@@ -1,4 +1,4 @@
-export default class ToDo {
+export default class ToDoItem {
   constructor(title, details, dueDate, priority) {
     this.title = title;
     this.details = details;
