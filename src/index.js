@@ -43,6 +43,7 @@ function EditPrompts() {
   const dateEdit = document.querySelector('#date-edit');
   const exit = document.querySelector('.exit-edit');
   const editSubmitBtn = document.querySelector('#edit__btn');
+  let currentNode;
   let currentToDoTitle;
   let arrayIndex;
 
@@ -50,14 +51,16 @@ function EditPrompts() {
 
   editIcons.forEach((icon) =>
     icon.addEventListener('click', () => {
-      setEditValues(getCurrentToDoTitleNode(icon));
+      currentNode = icon.parentElement.parentElement;
+      getCurrentNodeToDoTitle(icon);
+      getCurrentNodeIndex(array, currentToDoTitle);
+      setEditValues(currentToDoTitle);
       openEditPrompt();
     })
   );
 
   editSubmitBtn.addEventListener('click', () => {
-    updateToDoArray(array, currentToDoTitle);
-
+    updateToDoArray();
     updateToDoDOM();
     closeEditPrompt();
     console.log(array);
@@ -73,7 +76,7 @@ function EditPrompts() {
     DomController.bodyContainer.classList.add('blur');
   }
 
-  function getCurrentToDoTitleNode(icon) {
+  function getCurrentNodeToDoTitle(icon) {
     currentToDoTitle =
       icon.parentElement.parentElement.querySelector(
         '.item-text-title'
@@ -81,17 +84,18 @@ function EditPrompts() {
     return currentToDoTitle;
   }
 
-  function setEditValues(title) {
-    titleEdit.textContent = title;
-    // detailsEdit.textContent = array[arrayIndex].details;
+  function getCurrentNodeIndex(arr, title) {
+    arrayIndex = arr.findIndex((object) => object.title === title);
   }
 
-  //   function getArrayIndex(arr, title) {
-  //     arrayIndex = arr.findIndex((object) => object.title === title);
-  //   }
+  function setEditValues(title) {
+    titleEdit.textContent = title;
+    detailsEdit.textContent = array[arrayIndex].details;
+    dateEdit.value = array[arrayIndex].dueDate;
+  }
 
-  function updateToDoArray(arr, title) {
-    arrayIndex = arr.findIndex((object) => object.title === title);
+  function updateToDoArray() {
+    // arrayIndex = arr.findIndex((object) => object.title === title);
 
     array[arrayIndex].title = titleEdit.value;
     array[arrayIndex].details = detailsEdit.value;
@@ -106,8 +110,8 @@ function EditPrompts() {
   }
 
   function updateToDoDOM() {
-    // icon.parentElement.parentElement.querySelector(
-    //   '.item-text-title'
+    currentNode.querySelector('.item-text-title').textContent =
+      array[arrayIndex].title;
     // ).textContent = titleEdit.value;
   }
 }
