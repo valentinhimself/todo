@@ -25,7 +25,8 @@ DomController.submitBtn.addEventListener('click', () => {
   function addToDoToDOM() {
     ToDoItem.createToDoItem(
       array[array.length - 1].title,
-      array[array.length - 1].priority
+      array[array.length - 1].priority,
+      array[array.length - 1].dueDate
     );
     DomController.resetInputs();
   }

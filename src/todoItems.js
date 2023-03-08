@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+
 export default class ToDoItem {
   constructor(title, details, dueDate, priority) {
     this.title = title;
@@ -6,7 +8,7 @@ export default class ToDoItem {
     this.priority = priority;
   }
 
-  static createToDoItem(title, priority) {
+  static createToDoItem(title, priority, dateValue) {
     this.title = title;
     this.priority = priority;
 
@@ -37,7 +39,12 @@ export default class ToDoItem {
     right.appendChild(detailsButton);
 
     const dueDate = document.createElement('span');
+    const dateObject = new Date(dateValue);
+    const dateMonth = format(dateObject, 'MMM');
+    const dateDay = format(dateObject, 'do');
+    const dateFormated = `${dateMonth} ${dateDay}`;
     dueDate.classList.add('item-due-date');
+    dueDate.textContent = dateFormated;
     right.appendChild(dueDate);
 
     const editIcon = document.createElement('span');
