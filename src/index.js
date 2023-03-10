@@ -36,26 +36,19 @@ DomController.submitBtn.addEventListener('click', () => {
 });
 
 function EditPrompts() {
-  console.log('called Edit Prompts');
   const editPrompt = document.querySelector('.edit-prompt__div ');
   const editIcons = document.querySelectorAll('.edit-icon');
   const titleEdit = document.querySelector('#title-edit');
   const detailsEdit = document.querySelector('#details-edit');
   const dateEdit = document.querySelector('#date-edit');
-  const priorityEditArr = document.querySelector('.edit-priority-btns label');
   const exit = document.querySelector('.exit-edit');
   const editSubmitBtn = document.querySelector('#edit__btn');
   let currentNode;
-  let currentToDoTitle;
-  let arrayIndex;
 
   exit.addEventListener('click', closeEditPrompt);
 
   editIcons.forEach((icon) =>
     icon.addEventListener('click', () => {
-      // getCurrentNodeToDoTitle(icon);
-      // getCurrentNodeIndex(array, currentToDoTitle);
-      // setEditValues(currentToDoTitle);
       assignClassCurrentNode(icon);
       populateEditFields();
       openEditPrompt();
@@ -67,8 +60,8 @@ function EditPrompts() {
   function callOnSubmit() {
     console.log(currentNode);
     updateToDoDOM();
+    updateToDoArray();
     closeEditPrompt();
-    resetEdit();
   }
 
   function assignClassCurrentNode(icon) {
@@ -78,6 +71,8 @@ function EditPrompts() {
 
   function populateEditFields() {
     titleEdit.value = currentNode.querySelector('.item-text-title').textContent;
+    detailsEdit.value = getArrayItem().details;
+    dateEdit.value = getArrayItem().dueDate;
     selectEditPriorityButton().click();
   }
 
@@ -102,16 +97,44 @@ function EditPrompts() {
 
   function changeItemPriority() {
     currentNode.classList.remove(currentNode.classList[1]);
-    currentNode.classList.add(
-      document
-        .querySelector('.edit-priority-btns .priority-active')
-        .id.split('_')[0]
-    );
+    currentNode.classList.add(getPriorityID());
+  }
+
+  function getPriorityID() {
+    return document
+      .querySelector('.edit-priority-btns .priority-active')
+      .id.split('_')[0];
+  }
+
+  function getEditedItemIndex() {
+    for (let i = 0; i < document.querySelector('main').children.length; i++) {
+      if (
+        document
+          .querySelector('main')
+          .children[i].classList.contains('isBeingEdited')
+      ) {
+        return i;
+      }
+    }
+  }
+
+  function getArrayItem() {
+    if (currentNode) return array[getEditedItemIndex()];
+  }
+
+  function updateToDoArray() {
+    if (currentNode) {
+      getArrayItem().title = titleEdit.value;
+      getArrayItem().details = detailsEdit.value;
+      getArrayItem().dueDate = dateEdit.value;
+      getArrayItem().priority = getPriorityID();
+    }
   }
 
   function closeEditPrompt() {
     editPrompt.classList.add('collapse');
     DomController.bodyContainer.classList.remove('blur');
+    resetEdit();
   }
 
   function resetEdit() {
@@ -120,45 +143,4 @@ function EditPrompts() {
       currentNode = undefined;
     }
   }
-
-  //   function getCurrentNodeToDoTitle(icon) {
-  //     currentToDoTitle =
-  //       icon.parentElement.parentElement.parentElement.querySelector(
-  //         '.item-text-title'
-  //       ).textContent;
-  //     return currentToDoTitle;
-  //   }
-
-  //   function getCurrentNodeIndex(arr, title) {
-  //     arrayIndex = arr.findIndex((object) => object.title === title);
-  //   }
-
-  //   function setEditValues(title) {
-  //     titleEdit.textContent = title;
-  //     detailsEdit.textContent = array[arrayIndex].details;
-  //     dateEdit.value = array[arrayIndex].dueDate;
-  //   }
-
-  //   function updateToDoArray() {
-  //     // arrayIndex = arr.findIndex((object) => object.title === title);
-
-  //     array[arrayIndex].title = titleEdit.value;
-  //     array[arrayIndex].details = detailsEdit.value;
-  //     array[arrayIndex].dueDate = dateEdit.value;
-  //     array[arrayIndex].priority = (() => {
-  //       const checkedValue = document
-  //         .querySelector('.edit-prompt__div .priority-btns input:checked')
-  //         .id.slice(0, 3);
-  //       if (checkedValue === 'low' || checkedValue === 'med') return checkedValue;
-  //       return 'high';
-  //     })();
-  //   }
-
-  //   function updateToDoDOM() {
-  //     console.log(arrayIndex);
-  //     console.log(array[arrayIndex]);
-  //     currentNode.querySelector('.item-text-title').textContent =
-  //       array[arrayIndex].title;
-  //     // ).textContent = titleEdit.value;
-  //   }
 }
