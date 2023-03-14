@@ -1,6 +1,7 @@
 import './styles/styles.css';
 import './assets/logo.png';
 import './assets/check.png';
+import { format } from 'date-fns';
 import DomController from './domController';
 import ToDoItem from './todoItems';
 
@@ -91,8 +92,17 @@ function EditPrompts() {
     if (currentNode) {
       currentNode.querySelector('.item-text-title').textContent =
         titleEdit.value;
+      changeDate();
       changeItemPriority();
     }
+  }
+
+  function changeDate() {
+    const dateObject = new Date(dateEdit.value);
+    const dateMonth = format(dateObject, 'MMM');
+    const dateDay = format(dateObject, 'do');
+    const dateFormated = `${dateMonth} ${dateDay}`;
+    currentNode.querySelector('.item-due-date').textContent = dateFormated;
   }
 
   function changeItemPriority() {

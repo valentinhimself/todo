@@ -11,6 +11,8 @@ export default class ToDoItem {
   static createToDoItem(title, priority, dateValue) {
     this.title = title;
     this.priority = priority;
+    this.dateValue = dateValue;
+    console.log(this.dateValue);
 
     const main = document.querySelector('main');
     const todoItem = document.createElement('div');
@@ -39,7 +41,7 @@ export default class ToDoItem {
     right.appendChild(detailsButton);
 
     const dueDate = document.createElement('span');
-    const dateObject = new Date(dateValue);
+    const dateObject = new Date(this.dateValue);
     const dateMonth = format(dateObject, 'MMM');
     const dateDay = format(dateObject, 'do');
     const dateFormated = `${dateMonth} ${dateDay}`;
