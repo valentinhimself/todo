@@ -2,11 +2,12 @@ import './styles/styles.css';
 import './assets/logo.png';
 import './assets/check.png';
 import { format } from 'date-fns';
+import deleteIcons from './removeToDo';
 import DomController from './domController';
 import ToDoItem from './todoItems';
 
 // function ToDo() {
-const array = [];
+export const array = [];
 window.array = array;
 DomController.submitBtn.addEventListener('click', () => {
   function pushToDoToArray() {
@@ -33,6 +34,7 @@ DomController.submitBtn.addEventListener('click', () => {
   }
   addToDoToDOM();
   EditPrompts();
+  deleteIcons();
   console.log(array);
 });
 
