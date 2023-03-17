@@ -20,10 +20,26 @@ export default function getDetails() {
       array[getIndex(detailsParentDiv)].details;
   };
 
-  detailsList.forEach((element) => {
-    element.addEventListener('click', () => {
-      detailsParentDiv = element.parentElement.parentElement;
-      setDetails();
+  const show = () => {
+    document.querySelector('.details-popup').classList.remove('collapse');
+    document.querySelector('.body-container').classList.add('blur');
+  };
+
+  const hide = () => {
+    document.querySelector('.details-popup').classList.add('collapse');
+    document.querySelector('.body-container').classList.remove('blur');
+  };
+
+  const initiateListeners = () => {
+    document.querySelector('.exit-details').addEventListener('click', hide);
+
+    detailsList.forEach((element) => {
+      element.addEventListener('click', () => {
+        detailsParentDiv = element.parentElement.parentElement;
+        setDetails();
+        show();
+      });
     });
-  });
+  };
+  initiateListeners();
 }
