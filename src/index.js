@@ -6,6 +6,7 @@ import deleteIcons from './removeToDo';
 import DomController from './domController';
 import ToDoItem from './todoItems';
 import EditPrompts from './editPrompts';
+import getDetails from './details.js';
 
 // function ToDo() {
 export const array = [];
@@ -36,5 +37,6 @@ DomController.submitBtn.addEventListener('click', () => {
   addToDoToDOM();
   EditPrompts();
   deleteIcons();
+  getDetails();
   console.log(array);
 });
