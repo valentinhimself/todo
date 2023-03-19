@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, isDate } from 'date-fns';
 
 export default class ToDoItem {
   constructor(title, details, dueDate, priority) {
@@ -8,11 +8,59 @@ export default class ToDoItem {
     this.priority = priority;
   }
 
+  static manipulateCounters(dateValue) {
+    const increaseHomeCounter = () => {
+      document.querySelector('.home__number').textContent =
+        parseInt(document.querySelector('.home__number').textContent) + 1;
+    };
+    const isToday = () => {
+      const today = `0${new Date().toLocaleDateString().replace(/\//g, '-')}`;
+      const parts = today.split('-');
+      return `${parts[2]}-${parts[0]}-${parts[1]}` === dateValue;
+    };
+
+    const isDateThisWeek = (date) => {
+      const todayObj = new Date();
+      const todayDate = todayObj.getDate();
+      const todayDay = todayObj.getDay();
+
+      // get first date of week
+      const firstDayOfWeek = new Date(todayObj.setDate(todayDate - todayDay));
+      firstDayOfWeek.setHours(0, 0, 0, 0);
+
+      // get last date of week
+      const lastDayOfWeek = new Date(firstDayOfWeek);
+      lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 6);
+      lastDayOfWeek.setHours(23, 59, 59, 0);
+      console.log(firstDayOfWeek);
+      console.log(lastDayOfWeek);
+
+      // if date is equal or within the first and last dates of the week
+      return date >= firstDayOfWeek && date <= lastDayOfWeek;
+    };
+    console.log(isDateThisWeek(new Date(`${dateValue}T00:00:00`)));
+    console.log(new Date(`${dateValue}T00:00:00`));
+
+    const increaseCounters = () => {
+      increaseHomeCounter();
+
+      if (isToday()) {
+        document.querySelector('.today__number').textContent =
+          parseInt(document.querySelector('.today__number').textContent) + 1;
+      }
+
+      if (isDateThisWeek(new Date(`${dateValue}T00:00:00`))) {
+        document.querySelector('.week__number').textContent =
+          parseInt(document.querySelector('.week__number').textContent) + 1;
+      }
+    };
+    increaseCounters();
+  }
+
   static createToDoItem(title, priority, dateValue) {
     this.title = title;
     this.priority = priority;
     this.dateValue = dateValue;
-    console.log(this.dateValue);
 
     const main = document.querySelector('main');
     const todoItem = document.createElement('div');
@@ -41,7 +89,7 @@ export default class ToDoItem {
     right.appendChild(detailsButton);
 
     const dueDate = document.createElement('span');
-    const dateObject = new Date(this.dateValue);
+    const dateObject = new Date(`${this.dateValue}T00:00:00`);
     const dateMonth = format(dateObject, 'MMM');
     const dateDay = format(dateObject, 'do');
     const dateFormated = `${dateMonth} ${dateDay}`;

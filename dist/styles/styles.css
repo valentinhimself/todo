@@ -80,25 +80,30 @@ nav {
 
 nav > ul {
   position: relative;
-  max-width: 50px;
+  max-width: 150px;
 }
 
 nav > ul > li {
   padding: 0.75rem 0;
   list-style: none;
   transition: 0.1s all ease;
+  display: flex;
+  justify-content: space-between;
 }
 
-nav > ul > li:hover {
+nav > ul > li:hover,
+nav > ul > li.active {
   color: var(--red);
   font-size: 1.375rem;
 }
 
 nav > ul > li:hover::before,
-nav > ul > li:active::before {
+nav > ul > li:active::before,
+nav > ul > li.active::before {
   content: '//';
   position: absolute;
   left: -1rem;
+  color: var(--red);
 }
 
 .add-todo {
@@ -482,7 +487,7 @@ input {
   max-height: 300px;
   margin: auto;
   padding: 2rem;
-  transition: all 0.2s ease-in;
+  transition: all 0.3s ease-in;
   background-color: rgba(0, 0, 0, 0.054);
 }
 
@@ -497,3 +502,28 @@ input {
   top: 1.5rem;
   cursor: pointer;
 }
+
+.li-number {
+  width: 1.35rem;
+  height: 1.35rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  border: 1px solid #974035b8;
+  background-color: #974035b8;
+  border-radius: 50%;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f7f7f7;
+  pointer-events: none;
+}
+
+/* .li-number.hide {
+  display: none;
+} */

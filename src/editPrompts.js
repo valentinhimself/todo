@@ -63,7 +63,7 @@ export default function EditPrompts() {
   }
 
   function changeDate() {
-    const dateObject = new Date(dateEdit.value);
+    const dateObject = new Date(`${dateEdit.value}T00:00:00`);
     const dateMonth = format(dateObject, 'MMM');
     const dateDay = format(dateObject, 'do');
     const dateFormated = `${dateMonth} ${dateDay}`;

@@ -7,6 +7,7 @@ import DomController from './domController';
 import ToDoItem from './todoItems';
 import EditPrompts from './editPrompts';
 import getDetails from './details.js';
+import navSort from './navSort';
 
 // function ToDo() {
 export const array = [];
@@ -32,6 +33,7 @@ DomController.submitBtn.addEventListener('click', () => {
       array[array.length - 1].priority,
       array[array.length - 1].dueDate
     );
+    ToDoItem.manipulateCounters(array[array.length - 1].dueDate);
     DomController.resetInputs();
   }
   addToDoToDOM();
@@ -40,3 +42,5 @@ DomController.submitBtn.addEventListener('click', () => {
   getDetails();
   console.log(array);
 });
+
+navSort();
