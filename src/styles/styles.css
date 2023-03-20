@@ -524,6 +524,6 @@ input {
   pointer-events: none;
 }
 
-/* .li-number.hide {
+.li-number.hide {
   display: none;
-} */
+}

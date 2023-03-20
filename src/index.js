@@ -8,6 +8,7 @@ import ToDoItem from './todoItems';
 import EditPrompts from './editPrompts';
 import getDetails from './details.js';
 import navSort from './navSort';
+import { manipulateCounters, checkboxCounter } from './counterManipulator';
 
 // function ToDo() {
 export const array = [];
@@ -25,7 +26,6 @@ DomController.submitBtn.addEventListener('click', () => {
       );
     }
   }
-  pushToDoToArray();
 
   function addToDoToDOM() {
     ToDoItem.createToDoItem(
@@ -33,13 +33,16 @@ DomController.submitBtn.addEventListener('click', () => {
       array[array.length - 1].priority,
       array[array.length - 1].dueDate
     );
-    ToDoItem.manipulateCounters(array[array.length - 1].dueDate);
+    manipulateCounters(array[array.length - 1].dueDate).increaseCounters();
+    checkboxCounter(array[array.length - 1].dueDate);
     DomController.resetInputs();
   }
+  pushToDoToArray();
   addToDoToDOM();
   EditPrompts();
   deleteIcons();
   getDetails();
+
   console.log(array);
 });
 

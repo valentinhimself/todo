@@ -1,4 +1,5 @@
 import { array } from './index';
+import { manipulateCounters } from './counterManipulator';
 
 export default function deleteIcons() {
   const deleteIconsArray = document.querySelectorAll('.delete-icon svg');
@@ -12,6 +13,8 @@ export default function deleteIcons() {
       const deletedToDo = document.querySelector('.isBeingDeleted');
       if (deletedToDo) {
         getIndex(deletedToDo);
+
+        manipulateCounters(array[getIndex(deletedToDo)].dueDate).decreaseCounters();
         removeToDo(deletedToDo);
         array.pop(getIndex());
       }
