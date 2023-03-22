@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { array } from './index';
+import { adjustCounters } from './counterManipulator';
 
 export default function EditPrompts() {
   const editPrompt = document.querySelector('.edit-prompt__div ');
@@ -10,6 +11,8 @@ export default function EditPrompts() {
   const exit = document.querySelector('.exit-edit');
   const editSubmitBtn = document.querySelector('#edit__btn');
   let currentNode;
+  let oldDate;
+  let newDate;
 
   exit.addEventListener('click', closeEditPrompt);
 
@@ -27,6 +30,7 @@ export default function EditPrompts() {
     console.log(currentNode);
     updateToDoDOM();
     updateToDoArray();
+    adjustCounters(oldDate, newDate);
     closeEditPrompt();
   }
 
@@ -39,6 +43,7 @@ export default function EditPrompts() {
     titleEdit.value = currentNode.querySelector('.item-text-title').textContent;
     detailsEdit.value = getArrayItem().details;
     dateEdit.value = getArrayItem().dueDate;
+    oldDate = dateEdit.value;
     selectEditPriorityButton().click();
   }
 
@@ -68,6 +73,7 @@ export default function EditPrompts() {
     const dateDay = format(dateObject, 'do');
     const dateFormated = `${dateMonth} ${dateDay}`;
     currentNode.querySelector('.item-due-date').textContent = dateFormated;
+    newDate = dateEdit.value;
   }
 
   function changeItemPriority() {

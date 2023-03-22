@@ -14,7 +14,9 @@ export default function deleteIcons() {
       if (deletedToDo) {
         getIndex(deletedToDo);
 
-        manipulateCounters(array[getIndex(deletedToDo)].dueDate).decreaseCounters();
+        manipulateCounters(
+          array[getIndex(deletedToDo)].dueDate
+        ).decreaseCounters().decreaseAllCounters();
         removeToDo(deletedToDo);
         array.pop(getIndex());
       }

@@ -33,7 +33,9 @@ DomController.submitBtn.addEventListener('click', () => {
       array[array.length - 1].priority,
       array[array.length - 1].dueDate
     );
-    manipulateCounters(array[array.length - 1].dueDate).increaseCounters();
+    manipulateCounters(array[array.length - 1].dueDate)
+      .increaseCounters()
+      .increaseAllCounters();
     checkboxCounter(array[array.length - 1].dueDate);
     DomController.resetInputs();
   }

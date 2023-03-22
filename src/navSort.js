@@ -1,4 +1,5 @@
 import { array } from './index';
+import { manipulateCounters } from './counterManipulator';
 
 export default function navSort() {
   const select = () => {
@@ -13,13 +14,48 @@ export default function navSort() {
             navNodes[i].classList.add('active');
           else navNodes[i].classList.remove('active');
         }
+        filterToDos(document.querySelector('li.active span').textContent);
       });
     });
-    return 'test';
-  };
-  select();
+    function filterToDos(active) {
+      const main = document.querySelector('main');
+      for (let i = 0; i < main.children.length; i++) {
+        if (active === 'Home') {
+          main.children[i].classList.remove('hide');
+        }
+        else {
+          if (getIndices(active)[i] === i) {
+            main.children[i].classList.remove('hide');
+          } else {
+            main.children[i].classList.add('hide');
+          }
+        }
+      }
+    }
 
-  const getHomeNumber = () => array.length;
-  const getTodayNumber = () => '';
-  const getWeekNumber = () => '';
+    function getIndices(active) {
+      let indexArray = [];
+      if (active === 'Today') {
+        for (let i = 0; i < array.length; i++) {
+          if (manipulateCounters(array[i].dueDate).isToday()) {
+            indexArray.push(i);
+          }
+        }
+      }
+      else if (active === 'Week') {
+        for (let i = 0; i < array.length; i++) {
+          if (
+            manipulateCounters(array[i].dueDate).isDateThisWeek(
+              array[i].dueDate
+            )
+          ) {
+            indexArray.push(i);
+          }
+        }
+      }
+      return indexArray;
+    }
+
+  };
+    select();
 }
