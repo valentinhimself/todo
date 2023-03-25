@@ -391,10 +391,6 @@ input {
   padding: 0.5rem;
 }
 
-.todo-item.hide {
-  display: none;
-}
-
 .check-box {
   display: block;
   height: 1.5rem;
