@@ -11,7 +11,10 @@ import navSort from './navSort';
 import { manipulateCounters, checkboxCounter } from './counterManipulator';
 
 // function ToDo() {
-export const array = [];
+export const array = JSON.parse(localStorage.getItem('myArray')) || [];
+export const counterArr = JSON.parse(localStorage.getItem('counters')) || [];
+
+window.counterArr = counterArr;
 window.array = array;
 DomController.submitBtn.addEventListener('click', () => {
   function pushToDoToArray() {
@@ -24,6 +27,7 @@ DomController.submitBtn.addEventListener('click', () => {
           DomController.getFormPriority().id
         )
       );
+      localStorage.setItem('myArray', JSON.stringify(array));
     }
   }
 
@@ -44,8 +48,32 @@ DomController.submitBtn.addEventListener('click', () => {
   EditPrompts();
   deleteIcons();
   getDetails();
-
+  putCountersIntoStorage();
+  localStorage.setItem('counters', JSON.stringify(counterArr));
   console.log(array);
 });
 
 navSort();
+
+function showValues(arr) {
+  arr.forEach((item) => {
+    ToDoItem.createToDoItem(item.title, item.priority, item.dueDate);
+    EditPrompts();
+    deleteIcons();
+    getDetails();
+  });
+  putCountersIntoStorage();
+}
+
+function putCountersIntoStorage() {
+  counterArr[0] = document.querySelector('.home__number').textContent;
+  counterArr[1] = document.querySelector('.today__number').textContent;
+  counterArr[2] = document.querySelector('.week__number').textContent;
+}
+
+// function setCounters(arr) {
+//   document.querySelector('.home__number').textContent = counterArr[0];
+//   document.querySelector('.today__number').textContent = counterArr[1];
+//   document.querySelector('.week__number').textContent = counterArr[2];
+// }
+showValues(array);

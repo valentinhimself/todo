@@ -19,6 +19,7 @@ export default function deleteIcons() {
         ).decreaseCounters().decreaseAllCounters();
         removeToDo(deletedToDo);
         array.pop(getIndex());
+        localStorage.setItem('myArray', JSON.stringify(array));
       }
     });
   });

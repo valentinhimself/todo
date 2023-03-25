@@ -110,6 +110,7 @@ export default function EditPrompts() {
       getArrayItem().dueDate = dateEdit.value;
       getArrayItem().priority = getPriorityID();
     }
+    localStorage.setItem('myArray', JSON.stringify(array));
   }
 
   function closeEditPrompt() {
