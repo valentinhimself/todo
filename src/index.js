@@ -48,32 +48,45 @@ DomController.submitBtn.addEventListener('click', () => {
   EditPrompts();
   deleteIcons();
   getDetails();
-  putCountersIntoStorage();
-  localStorage.setItem('counters', JSON.stringify(counterArr));
+  setCounters();
+
   console.log(array);
 });
 
 navSort();
 
 function showValues(arr) {
+  showCounters();
+
   arr.forEach((item) => {
     ToDoItem.createToDoItem(item.title, item.priority, item.dueDate);
     EditPrompts();
     deleteIcons();
     getDetails();
   });
-  putCountersIntoStorage();
 }
 
-function putCountersIntoStorage() {
+export function setCounters() {
   counterArr[0] = document.querySelector('.home__number').textContent;
   counterArr[1] = document.querySelector('.today__number').textContent;
   counterArr[2] = document.querySelector('.week__number').textContent;
+  localStorage.setItem('counters', JSON.stringify(counterArr));
+  console.log(counterArr);
 }
 
-// function setCounters(arr) {
-//   document.querySelector('.home__number').textContent = counterArr[0];
-//   document.querySelector('.today__number').textContent = counterArr[1];
-//   document.querySelector('.week__number').textContent = counterArr[2];
-// }
+function showCounters() {
+  document.querySelector('.home__number').textContent = counterArr[0];
+  document.querySelector('.today__number').textContent = counterArr[1];
+  document.querySelector('.week__number').textContent = counterArr[2];
+  if (counterArr[0] !== '0') {
+    document.querySelector('.home__number').classList.remove('hide');
+  }
+  if (counterArr[1] !== '0') {
+    document.querySelector('.today__number').classList.remove('hide');
+  }
+  if (counterArr[2] !== '0') {
+    document.querySelector('.week__number').classList.remove('hide');
+  }
+}
+
 showValues(array);

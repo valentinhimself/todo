@@ -1,4 +1,4 @@
-import { array } from './index';
+import { array, setCounters } from './index';
 import { manipulateCounters } from './counterManipulator';
 
 export default function deleteIcons() {
@@ -20,6 +20,7 @@ export default function deleteIcons() {
         removeToDo(deletedToDo);
         array.pop(getIndex());
         localStorage.setItem('myArray', JSON.stringify(array));
+        setCounters();
       }
     });
   });

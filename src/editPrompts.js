@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { array } from './index';
+import { array, setCounters } from './index';
 import { adjustCounters } from './counterManipulator';
 
 export default function EditPrompts() {
@@ -31,6 +31,7 @@ export default function EditPrompts() {
     updateToDoDOM();
     updateToDoArray();
     adjustCounters(oldDate, newDate);
+    setCounters();
     closeEditPrompt();
   }
 
