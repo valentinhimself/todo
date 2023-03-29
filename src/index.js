@@ -75,18 +75,18 @@ export function setCounters() {
 }
 
 function showCounters() {
-  // if (counterArr[0] == true) {
-  //   document.querySelector('.home__number').textContent = counterArr[0];
-  //   document.querySelector('.home__number').classList.remove('hide');
-  // }
-  // if (counterArr[1] == true) {
-  //   document.querySelector('.today__number').textContent = counterArr[1];
-  //   document.querySelector('.today__number').classList.remove('hide');
-  // }
-  // if (counterArr[2] == true) {
-  //   document.querySelector('.week__number').textContent = counterArr[2];
-  //   document.querySelector('.week__number').classList.remove('hide');
-  // }
+  if (counterArr[0] == true) {
+    document.querySelector('.home__number').textContent = counterArr[0];
+    document.querySelector('.home__number').classList.remove('hide');
+  }
+  if (counterArr[1] == true) {
+    document.querySelector('.today__number').textContent = counterArr[1];
+    document.querySelector('.today__number').classList.remove('hide');
+  }
+  if (counterArr[2] == true) {
+    document.querySelector('.week__number').textContent = counterArr[2];
+    document.querySelector('.week__number').classList.remove('hide');
+  }
 }
 
 showValues(array);
