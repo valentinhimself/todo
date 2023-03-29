@@ -94,8 +94,7 @@ nav > ul > li {
 nav > ul > li:hover,
 nav > ul > li.active {
   color: var(--red);
-  font-size: 1.2rem;
-  cursor: pointer;
+  font-size: 1.375rem;
 }
 
 nav > ul > li:hover::before,
@@ -526,9 +525,5 @@ input {
 }
 
 .li-number.hide {
-  display: none;
-}
-
-.todo-item.hide {
   display: none;
 }
