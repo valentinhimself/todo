@@ -528,3 +528,7 @@ input {
 .li-number.hide {
   display: none;
 }
+
+.todo-item.hide {
+  display: none;
+}
