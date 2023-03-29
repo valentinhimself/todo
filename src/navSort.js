@@ -2,7 +2,7 @@ import { array } from './index';
 import { manipulateCounters } from './counterManipulator';
 
 export default function navSort() {
-  const select = () => {
+  const selectNavItem = () => {
     const navNodes = document.querySelectorAll('nav > ul > li');
     navNodes.forEach((node) => {
       node.addEventListener('click', (e) => {
@@ -57,5 +57,5 @@ export default function navSort() {
     }
 
   };
-    select();
+    selectNavItem();
 }
