@@ -94,7 +94,8 @@ nav > ul > li {
 nav > ul > li:hover,
 nav > ul > li.active {
   color: var(--red);
-  font-size: 1.375rem;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 nav > ul > li:hover::before,
